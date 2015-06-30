@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>example</title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="render.js"></script>
+    <script>
+    $(function() {
+        var data = [{
+            data: 500,
+            age: 300
+        }, {
+            data: 700,
+            age: 600
+        }, {
+            data: 800,
+            age: 200
+        }];
+        var a = "";
+        for (var i = 0; i < data.length; i++) {
+            a += render($("#tr").html(), {
+                td: render($("#td").html(), {
+                    text: data[i].data
+                }) + render($("#td").html(), {
+                    text: data[i].age
+                })
+            });
+        }
+        $("body").append(render($("#tb").html(), {
+            tr: a
+        }));
+    });
+    </script>
+</head>
+
+<body>
+    <script type="text/template" id="tb">
+        <table border="1">
+            {{tr}}
+        </table>
+    </script>
+    <script type="text/template" id="tr">
+        <tr>
+            {{td}}
+            </td>
+    </script>
+    <script type="text/template" id="td">
+        <td>{{text}}</td>
+    </script>
+</body>
+
+</html>
