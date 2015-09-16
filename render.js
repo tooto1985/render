@@ -1,6 +1,10 @@
 function render(html, data) {
     function replace(html, key, value) {
-        return html.replace("{{" + key + "}}", value);
+        key="{{" + key + "}}";
+        while(html.indexOf(key)>-1) {
+            html = html.replace(key, value);
+        }
+        return html;
     }
     var template;
     if (data instanceof Array) {
